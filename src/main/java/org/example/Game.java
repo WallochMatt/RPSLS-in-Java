@@ -33,7 +33,6 @@ public class Game {
         else{
             System.out.println("Error");
         }
-
         return null;
     }
 
@@ -57,7 +56,7 @@ public class Game {
                 """);
     }
 
-    public int chooseRounds(){
+    public int chooseRounds() throws NumberFormatException{
 
         System.out.println("""
                 Choose the number of rounds to play: \s
@@ -83,15 +82,12 @@ public class Game {
 
         while(currentRounds < numberOfRounds){
             currentRounds += 1;
+            System.out.println("Round " + currentRounds);
+            String playerOneChoice = user_1.Choose();
+            System.out.println("You chose: " + playerOneChoice);
+
         }
 
-        System.out.println("Player one, choose a gesture: ");
-
-        Scanner scanner = new Scanner(System.in);
-        String selectedChoice = scanner.nextLine();
-
-//        playerOneChoice = switch (selectedChoice){
-//
-//        }
     }
+
 }
