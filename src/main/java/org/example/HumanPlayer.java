@@ -8,9 +8,10 @@ public class HumanPlayer extends Player{
     }
 
     @Override
-    public String Choose(){
-        System.out.println("""
-                Player one, choose a gesture: \s
+    public String choose(){
+        System.out.println(name +
+                """
+                , choose a gesture: \s
                 1: Rock \s
                 2: Paper \s
                 3: Scissors \s

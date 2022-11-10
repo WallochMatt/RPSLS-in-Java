@@ -83,8 +83,12 @@ public class Game {
         while(currentRounds < numberOfRounds){
             currentRounds += 1;
             System.out.println("Round " + currentRounds);
-            String playerOneChoice = user_1.Choose();
+
+            String playerOneChoice = user_1.choose();
             System.out.println("You chose: " + playerOneChoice);
+
+            String playerTwoChoice = user_2.choose();
+            System.out.println("You chose: " + playerTwoChoice);
 
         }
 
