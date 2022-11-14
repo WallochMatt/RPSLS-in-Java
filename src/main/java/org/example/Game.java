@@ -5,7 +5,7 @@ import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
 public class Game {
-    //Instance Variables (HAS A)
+
     public Player user_1;
     public Player user_2;
 
@@ -40,11 +40,10 @@ public class Game {
     public void run_game(){
         displayWelcome();
         playGame();
-
     }
 
     public static void displayWelcome(){
-        System.out.println("\n Wanna play Rock, Paper, Scissors, Lizard, Spock? \n");
+        System.out.println("\n Wanna play Rock, Paper, Scissors, Lizard, Spock? \r\n");
         System.out.println("""
                 Remember the rules:\s
                 Scissors cuts Paper, Scissors decapitates Lizard,\s
@@ -79,19 +78,17 @@ public class Game {
     public void playGame() {
         int currentRounds = 0;
         int numberOfRounds = chooseRounds();
-        System.out.println("numberOfRounds in playGame" + numberOfRounds);
 
         while (currentRounds < numberOfRounds) {
             currentRounds += 1;
             System.out.println("Round " + currentRounds);
 
             String playerOneChoice = user_1.choose();
-            System.out.println("You chose: " + playerOneChoice);
+            System.out.println(user_1.name + " chose " + playerOneChoice);
 
             String playerTwoChoice = user_2.choose();
-            System.out.println("You chose: " + playerTwoChoice);
+            System.out.println(user_2.name + " chose: " + playerTwoChoice);
 
-            //////////////////////////////////////Above works
 
             if (Objects.equals(playerOneChoice, "Lizard") && (Objects.equals(playerTwoChoice, "Spock") || Objects.equals(playerTwoChoice, "Paper"))) {
                 user_1.points += 1;
@@ -115,34 +112,35 @@ public class Game {
             }
             else if (Objects.equals(playerOneChoice, playerTwoChoice)) {
                 currentRounds -= 1;
-                System.out.println("Tie");
+                System.out.println("Tie \r\n");
             }
             else {
                 user_2.points += 1;
-                System.out.println(user_2.name + " won the round!");
+                System.out.println(user_2.name + " won the round! \n");
             }
-            checkForWinner(numberOfRounds, currentRounds);
+            currentRounds = checkForWinner(numberOfRounds, currentRounds);
         }
-        ;
+
     }
 
-    public void checkForWinner(int numberOfRounds, int currentRound){
+    public int checkForWinner(int numberOfRounds, int currentRound){
         int majority = (numberOfRounds / 2) + 1;
         if (user_1.points >= majority) {
             gameOver(user_1, currentRound);
+            return currentRound += 100;
         }
         else if (user_2.points >= majority) {
             gameOver(user_2, currentRound);
-//            System.out.println(user_2.name + " WINS!");
+            return currentRound += 100;
 
         }
-
+        return currentRound;
     }
 
     public void gameOver(Player player, int currentRound){
         System.out.println("GAME OVER");
         System.out.println(player.name + " WINS!");
-        currentRound += 100;
+
     }
 
 }
